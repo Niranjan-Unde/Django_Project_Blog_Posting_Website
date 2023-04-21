@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'main' %}
+    {% for post in allPost %}
+    {% if request.user.is_authenticated %}
+        <div class="col-md-6 my-5 mx-auto">
+            <div class="card" style="width: 100%;">
+                <img src="{% static 'assets/img/noimage.jpg' %}" class="card-img-top" alt="..." height="180px">
+                
+                <div class="card-body">
+                    <h5 class="card-title">{{post.title}}</h5>
+                    <p class="card-text">{{post.sdet}}</p>
+                    <p class="card-text">Posted On: {{post.created_on}}</p>
+                    <a href="{% url 'readmore' post.id %}" class="btn btn-danger">Read More</a>
+                </div>  
+            </div>
+        </div>
+        {% endif %}
+    {% endfor %}
+{% endblock 'main' %}

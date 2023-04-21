@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block 'main' %}
+    <div class="col-md-12 mt-3">
+        <a href="{% url 'create_post' %}"><button class="btn btn-danger">Create Post</button></a>
+    </div>
+
+    <div class="col-md-3 my-5">
+        <h3>Filter By Category</h3>
+        <p><a href="{% url 'dashboard' %}">All</a></p>
+        <p><a href="{% url 'catfilter' 1 %}">Technical</a></p>
+        <p><a href="{% url 'catfilter' 2 %}">Travel</a></p>
+        <p><a href="{% url 'catfilter' 3 %}">Food</a></p>
+        <hr>
+        <h3>Filter By Status</h3>
+        <p><a href="{% url 'actfilter' 1 %}">Active</a></p>
+        <p><a href="{% url 'actfilter' 0 %}">Inactive</a></p>
+    </div>
+
+    <div class="col-md-9 my-5">
+        <table class="table">
+            <tr>
+                <th>Sr. No.</th>
+                <th>Title</th>
+                <th>Small Description</th>
+                <th>Details</th>
+                <th>Category</th>
+                <th>Status</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+
+            {% for post in data %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{post.title}}</td>
+                    <td>{{post.sdetail}}</td>
+                    <td>{{post.detail}}</td>
+                    
+                    {% if post.cat == 1 %}
+                        <td>Technical</td>
+                    {% elif post.cat == 2 %}
+                        <td>Travel</td>
+                    {% else %}
+                        <td>Food</td>
+                    {% endif %}
+
+                    {% if post.status == 1 %}
+                        <td>Active</td>
+                    {% else %}
+                        <td>Inactive</td>
+                    {% endif %}
+
+                    <td><a href="{% url 'edit' post.id %}"><button class="btn btn-warning">Edit</button></a></td>
+                    <td><a href="{% url 'delete' post.id %}"><button class="btn btn-danger">Delete</button></a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock 'main' %}

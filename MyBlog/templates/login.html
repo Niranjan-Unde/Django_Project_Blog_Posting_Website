@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block 'main' %}
+
+<div class="col-md-6 my-5 mx-auto">
+    <form action="" method="POST" action="">
+        {% csrf_token %}
+        {% csrf_token %}
+        {% for field in lform %}
+        <div class="mb-4">
+            <label class="form-label" for="{{ field.auto_id }}">{{ field.label }} :</label>
+            {{field}}
+        </div>
+        {% endfor %}
+        <h4 class="mb-3"><i>{{msg}}</i></h4>
+        <button type="submit" class="btn btn-warning">Login</button>
+    </form>
+    
+</div>
+
+{% endblock 'main' %}

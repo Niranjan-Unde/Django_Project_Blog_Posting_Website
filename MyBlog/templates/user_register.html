@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block 'main' %}
+
+    <div class="col-md-6 my-5 mx-auto">
+        <form action="" method="POST" action="create_post">
+            {% csrf_token %}
+            <table>
+                {% for field in uform %}
+                    <tr>
+                        <th>{{field.label_tag}}</th>
+                        <td>{{field}}</td>
+                        <td>{{field.error}}</td>
+                    </tr>
+
+                {% endfor field in userform %}
+                {% if msg %}
+                    <span class="text-success"><h3><b><i>{{msg}}</b></i></h3></span>
+                {% endif %}
+                <tr>
+                    <td><button type="submit" class="btn btn-danger">Register</button></td>
+                </tr>
+            </table>
+        </form>
+        <a href="{% url 'login' %}"><button class="btn btn-danger my-2">Click here Login</button></a>
+    </div>
+
+{% endblock 'main' %}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block 'main' %}
+
+    <div class="col-md-6 mx-auto my-5">
+        <form action="" method="POST">
+        {% csrf_token %}
+        {% for field in pform %}
+        <div class="mb-3">
+            {% if field.label in excludelst %}
+
+            {% else %}
+            <label class="form-label" for="{{ field.auto_id }}">{{field.label}} :</label>
+            {% endif %}
+            {{field}}
+        </div>
+        {% endfor %}
+        <div class="mb-3">
+            <button class="btn btn-danger" type="submit">Update Post</button>
+        </div>
+
+
+        </form>
+        <a href="/udash"><button class="btn btn-danger">Return to Dashboard</button></a>
+    </div>
+
+{% endblock 'main' %}

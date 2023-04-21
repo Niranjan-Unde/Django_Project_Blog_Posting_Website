@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'main' %}
+    {% if request.user.is_authenticated %}
+        <div class="col-md-8 my-5 mx-auto">
+            <div class="card" style="width: 100%;">
+                <img src="{% static 'assets/img/noimage.jpg' %}" class="card-img-top" alt="..." height="180px">
+                
+                <div class="card-body">
+                    <h5 class="card-title">Title: {{post.title}}</h5>
+                    <p class="card-text">Short Description: {{post.sdetail}}</p>
+                    <p class="card-text">Detail Description: {{post.detail}}</p>
+
+                    {% if post.cat == 1 %}
+                        <p class="card-text">Category: Technical</p>
+                    {% elif post.cat == 2 %}
+                        <p class="card-text">Category: Travel</p>
+                    {% else %}
+                        <p class="card-text">Category: Food</p>
+                    {% endif %}
+
+                    {% if post.status == 1 %}
+                        <p class="card-text">Status: Active</p>
+                    {% else %}
+                        <p class="card-text">Status: Inactive</p>
+                    {% endif %}
+
+                    <p class="card-text">Posted On: {{post.created_on}}</p>
+                </div>  
+            </div>
+        </div>
+        {% endif %}
+{% endblock 'main' %}
